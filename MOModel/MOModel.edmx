@@ -1,0 +1,244 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="MOModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Paso">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Titulo" Type="nvarchar" MaxLength="255" />
+          <Property Name="Orden" Type="int" />
+          <Property Name="Imagen" Type="nvarchar" MaxLength="255" />
+          <Property Name="Descripcion" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Seccion">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Tutorial">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Titulo" Type="nvarchar" MaxLength="255" />
+          <Property Name="Featured" Type="bit" />
+          <Property Name="Video" Type="nvarchar" MaxLength="255" />
+          <Property Name="Descripcion" Type="nvarchar" MaxLength="255" />
+          <Property Name="Dificultad" Type="nvarchar" MaxLength="5" />
+          <Property Name="Tiempo" Type="nvarchar" MaxLength="15" />
+          <Property Name="Imagen" Type="nvarchar" MaxLength="255" />
+          <Property Name="Publicacion" Type="date" />
+          <Property Name="SeccionId" Type="int" />
+        </EntityType>
+        <EntityType Name="TutorialPaso">
+          <Key>
+            <PropertyRef Name="TutorialId" />
+            <PropertyRef Name="PasoId" />
+          </Key>
+          <Property Name="TutorialId" Type="int" Nullable="false" />
+          <Property Name="PasoId" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_TutorialPaso_Paso">
+          <End Role="Paso" Type="Self.Paso" Multiplicity="1" />
+          <End Role="TutorialPaso" Type="Self.TutorialPaso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Paso">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TutorialPaso">
+              <PropertyRef Name="PasoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TutorialPaso_Tutorial">
+          <End Role="Tutorial" Type="Self.Tutorial" Multiplicity="1" />
+          <End Role="TutorialPaso" Type="Self.TutorialPaso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tutorial">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TutorialPaso">
+              <PropertyRef Name="TutorialId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TutorialSeccion">
+          <End Role="Seccion" Type="Self.Seccion" Multiplicity="0..1" />
+          <End Role="Tutorial" Type="Self.Tutorial" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Seccion">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tutorial">
+              <PropertyRef Name="SeccionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MOModelStoreContainer">
+          <EntitySet Name="Paso" EntityType="Self.Paso" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Seccion" EntityType="Self.Seccion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tutorial" EntityType="Self.Tutorial" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TutorialPaso" EntityType="Self.TutorialPaso" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_TutorialPaso_Paso" Association="Self.FK_TutorialPaso_Paso">
+            <End Role="Paso" EntitySet="Paso" />
+            <End Role="TutorialPaso" EntitySet="TutorialPaso" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TutorialPaso_Tutorial" Association="Self.FK_TutorialPaso_Tutorial">
+            <End Role="Tutorial" EntitySet="Tutorial" />
+            <End Role="TutorialPaso" EntitySet="TutorialPaso" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TutorialSeccion" Association="Self.FK_TutorialSeccion">
+            <End Role="Seccion" EntitySet="Seccion" />
+            <End Role="Tutorial" EntitySet="Tutorial" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MOModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Paso">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Titulo" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Orden" Type="Int32" />
+          <Property Name="Imagen" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Tutorial" Relationship="Self.TutorialPaso" FromRole="Paso" ToRole="Tutorial" />
+        </EntityType>
+        <EntityType Name="Seccion">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Tutorial" Relationship="Self.FK_TutorialSeccion" FromRole="Seccion" ToRole="Tutorial" />
+        </EntityType>
+        <EntityType Name="Tutorial">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Titulo" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Featured" Type="Boolean" />
+          <Property Name="Video" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Descripcion" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Dificultad" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="Tiempo" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Imagen" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Publicacion" Type="DateTime" Precision="0" />
+          <Property Name="SeccionId" Type="Int32" />
+          <NavigationProperty Name="Seccion" Relationship="Self.FK_TutorialSeccion" FromRole="Tutorial" ToRole="Seccion" />
+          <NavigationProperty Name="Paso" Relationship="Self.TutorialPaso" FromRole="Tutorial" ToRole="Paso" />
+        </EntityType>
+        <Association Name="FK_TutorialSeccion">
+          <End Role="Seccion" Type="Self.Seccion" Multiplicity="0..1" />
+          <End Role="Tutorial" Type="Self.Tutorial" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Seccion">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tutorial">
+              <PropertyRef Name="SeccionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="TutorialPaso">
+          <End Role="Paso" Type="Self.Paso" Multiplicity="*" />
+          <End Role="Tutorial" Type="Self.Tutorial" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="ModelContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Paso" EntityType="Self.Paso" />
+          <EntitySet Name="Seccion" EntityType="Self.Seccion" />
+          <EntitySet Name="Tutorial" EntityType="Self.Tutorial" />
+          <AssociationSet Name="FK_TutorialSeccion" Association="Self.FK_TutorialSeccion">
+            <End Role="Seccion" EntitySet="Seccion" />
+            <End Role="Tutorial" EntitySet="Tutorial" />
+          </AssociationSet>
+          <AssociationSet Name="TutorialPaso" Association="Self.TutorialPaso">
+            <End Role="Paso" EntitySet="Paso" />
+            <End Role="Tutorial" EntitySet="Tutorial" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MOModelStoreContainer" CdmEntityContainer="ModelContext">
+          <EntitySetMapping Name="Paso">
+            <EntityTypeMapping TypeName="MOModel.Paso">
+              <MappingFragment StoreEntitySet="Paso">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Titulo" ColumnName="Titulo" />
+                <ScalarProperty Name="Orden" ColumnName="Orden" />
+                <ScalarProperty Name="Imagen" ColumnName="Imagen" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Seccion">
+            <EntityTypeMapping TypeName="MOModel.Seccion">
+              <MappingFragment StoreEntitySet="Seccion">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tutorial">
+            <EntityTypeMapping TypeName="MOModel.Tutorial">
+              <MappingFragment StoreEntitySet="Tutorial">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Titulo" ColumnName="Titulo" />
+                <ScalarProperty Name="Featured" ColumnName="Featured" />
+                <ScalarProperty Name="Video" ColumnName="Video" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Dificultad" ColumnName="Dificultad" />
+                <ScalarProperty Name="Tiempo" ColumnName="Tiempo" />
+                <ScalarProperty Name="Imagen" ColumnName="Imagen" />
+                <ScalarProperty Name="Publicacion" ColumnName="Publicacion" />
+                <ScalarProperty Name="SeccionId" ColumnName="SeccionId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="TutorialPaso" TypeName="MOModel.TutorialPaso" StoreEntitySet="TutorialPaso">
+            <EndProperty Name="Paso">
+              <ScalarProperty Name="Id" ColumnName="PasoId" />
+            </EndProperty>
+            <EndProperty Name="Tutorial">
+              <ScalarProperty Name="Id" ColumnName="TutorialId" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

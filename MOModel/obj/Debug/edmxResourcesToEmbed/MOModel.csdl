@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MOModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Paso">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Titulo" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Orden" Type="Int32" />
+    <Property Name="Imagen" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Tutorial" Relationship="Self.TutorialPaso" FromRole="Paso" ToRole="Tutorial" />
+  </EntityType>
+  <EntityType Name="Seccion">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Tutorial" Relationship="Self.FK_TutorialSeccion" FromRole="Seccion" ToRole="Tutorial" />
+  </EntityType>
+  <EntityType Name="Tutorial">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Titulo" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Featured" Type="Boolean" />
+    <Property Name="Video" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Descripcion" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Dificultad" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="Tiempo" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="Imagen" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Publicacion" Type="DateTime" Precision="0" />
+    <Property Name="SeccionId" Type="Int32" />
+    <NavigationProperty Name="Seccion" Relationship="Self.FK_TutorialSeccion" FromRole="Tutorial" ToRole="Seccion" />
+    <NavigationProperty Name="Paso" Relationship="Self.TutorialPaso" FromRole="Tutorial" ToRole="Paso" />
+  </EntityType>
+  <Association Name="FK_TutorialSeccion">
+    <End Role="Seccion" Type="Self.Seccion" Multiplicity="0..1" />
+    <End Role="Tutorial" Type="Self.Tutorial" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Seccion">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Tutorial">
+        <PropertyRef Name="SeccionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="TutorialPaso">
+    <End Role="Paso" Type="Self.Paso" Multiplicity="*" />
+    <End Role="Tutorial" Type="Self.Tutorial" Multiplicity="*" />
+  </Association>
+  <EntityContainer Name="ModelContext" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Paso" EntityType="Self.Paso" />
+    <EntitySet Name="Seccion" EntityType="Self.Seccion" />
+    <EntitySet Name="Tutorial" EntityType="Self.Tutorial" />
+    <AssociationSet Name="FK_TutorialSeccion" Association="Self.FK_TutorialSeccion">
+      <End Role="Seccion" EntitySet="Seccion" />
+      <End Role="Tutorial" EntitySet="Tutorial" />
+    </AssociationSet>
+    <AssociationSet Name="TutorialPaso" Association="Self.TutorialPaso">
+      <End Role="Paso" EntitySet="Paso" />
+      <End Role="Tutorial" EntitySet="Tutorial" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

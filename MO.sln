@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.15
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MO", "MO\MO.csproj", "{157A83F7-1BFC-41AF-A2B9-C25B92A2CD7D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MOModel", "MOModel\MOModel.csproj", "{0FDBDCEE-FC17-46A1-819A-F73E13537BEE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{157A83F7-1BFC-41AF-A2B9-C25B92A2CD7D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{157A83F7-1BFC-41AF-A2B9-C25B92A2CD7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{157A83F7-1BFC-41AF-A2B9-C25B92A2CD7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{157A83F7-1BFC-41AF-A2B9-C25B92A2CD7D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0FDBDCEE-FC17-46A1-819A-F73E13537BEE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0FDBDCEE-FC17-46A1-819A-F73E13537BEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0FDBDCEE-FC17-46A1-819A-F73E13537BEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0FDBDCEE-FC17-46A1-819A-F73E13537BEE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {099D05EC-C746-4092-984D-9591A4CCCF3E}
+	EndGlobalSection
+EndGlobal

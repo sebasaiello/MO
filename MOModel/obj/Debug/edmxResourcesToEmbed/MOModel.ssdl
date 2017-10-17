@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MOModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Paso">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Titulo" Type="nvarchar" MaxLength="255" />
+    <Property Name="Orden" Type="int" />
+    <Property Name="Imagen" Type="nvarchar" MaxLength="255" />
+    <Property Name="Descripcion" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Seccion">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="nvarchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="Tutorial">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Titulo" Type="nvarchar" MaxLength="255" />
+    <Property Name="Featured" Type="bit" />
+    <Property Name="Video" Type="nvarchar" MaxLength="255" />
+    <Property Name="Descripcion" Type="nvarchar" MaxLength="255" />
+    <Property Name="Dificultad" Type="nvarchar" MaxLength="5" />
+    <Property Name="Tiempo" Type="nvarchar" MaxLength="15" />
+    <Property Name="Imagen" Type="nvarchar" MaxLength="255" />
+    <Property Name="Publicacion" Type="date" />
+    <Property Name="SeccionId" Type="int" />
+  </EntityType>
+  <EntityType Name="TutorialPaso">
+    <Key>
+      <PropertyRef Name="TutorialId" />
+      <PropertyRef Name="PasoId" />
+    </Key>
+    <Property Name="TutorialId" Type="int" Nullable="false" />
+    <Property Name="PasoId" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_TutorialPaso_Paso">
+    <End Role="Paso" Type="Self.Paso" Multiplicity="1" />
+    <End Role="TutorialPaso" Type="Self.TutorialPaso" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Paso">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TutorialPaso">
+        <PropertyRef Name="PasoId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TutorialPaso_Tutorial">
+    <End Role="Tutorial" Type="Self.Tutorial" Multiplicity="1" />
+    <End Role="TutorialPaso" Type="Self.TutorialPaso" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tutorial">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TutorialPaso">
+        <PropertyRef Name="TutorialId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TutorialSeccion">
+    <End Role="Seccion" Type="Self.Seccion" Multiplicity="0..1" />
+    <End Role="Tutorial" Type="Self.Tutorial" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Seccion">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Tutorial">
+        <PropertyRef Name="SeccionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="MOModelStoreContainer">
+    <EntitySet Name="Paso" EntityType="Self.Paso" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Seccion" EntityType="Self.Seccion" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tutorial" EntityType="Self.Tutorial" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TutorialPaso" EntityType="Self.TutorialPaso" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_TutorialPaso_Paso" Association="Self.FK_TutorialPaso_Paso">
+      <End Role="Paso" EntitySet="Paso" />
+      <End Role="TutorialPaso" EntitySet="TutorialPaso" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TutorialPaso_Tutorial" Association="Self.FK_TutorialPaso_Tutorial">
+      <End Role="Tutorial" EntitySet="Tutorial" />
+      <End Role="TutorialPaso" EntitySet="TutorialPaso" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TutorialSeccion" Association="Self.FK_TutorialSeccion">
+      <End Role="Seccion" EntitySet="Seccion" />
+      <End Role="Tutorial" EntitySet="Tutorial" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

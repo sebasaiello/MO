@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="MOModelStoreContainer" CdmEntityContainer="ModelContext">
+    <EntitySetMapping Name="Paso">
+      <EntityTypeMapping TypeName="MOModel.Paso">
+        <MappingFragment StoreEntitySet="Paso">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Titulo" ColumnName="Titulo" />
+          <ScalarProperty Name="Orden" ColumnName="Orden" />
+          <ScalarProperty Name="Imagen" ColumnName="Imagen" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Seccion">
+      <EntityTypeMapping TypeName="MOModel.Seccion">
+        <MappingFragment StoreEntitySet="Seccion">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tutorial">
+      <EntityTypeMapping TypeName="MOModel.Tutorial">
+        <MappingFragment StoreEntitySet="Tutorial">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Titulo" ColumnName="Titulo" />
+          <ScalarProperty Name="Featured" ColumnName="Featured" />
+          <ScalarProperty Name="Video" ColumnName="Video" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="Dificultad" ColumnName="Dificultad" />
+          <ScalarProperty Name="Tiempo" ColumnName="Tiempo" />
+          <ScalarProperty Name="Imagen" ColumnName="Imagen" />
+          <ScalarProperty Name="Publicacion" ColumnName="Publicacion" />
+          <ScalarProperty Name="SeccionId" ColumnName="SeccionId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="TutorialPaso" TypeName="MOModel.TutorialPaso" StoreEntitySet="TutorialPaso">
+      <EndProperty Name="Paso">
+        <ScalarProperty Name="Id" ColumnName="PasoId" />
+      </EndProperty>
+      <EndProperty Name="Tutorial">
+        <ScalarProperty Name="Id" ColumnName="TutorialId" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>
