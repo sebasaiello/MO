@@ -87,12 +87,13 @@
 
             <div class="col-md-6">
                 <h2>Agregar Pasos</h2>
+                <button type="button" class="btn btn-default" id="addPaso" onclick="clicks++;updateClickCount();">+</button>
                 <div class="form-horizontal">
                     <div class="form-group">
-                        @Html.LabelFor(model => model.Paso, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.Paso, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.Paso, "", new { @class = "text-danger" })
+                        <div class="col-md-10" id="crearPasos">
+                            <h2>Paso 1</h2>
+                            <input type='text' name='Paso[0].Titulo'/>
+                            <input type='text' name='Paso[0].Descripcion'/>
                         </div>
                     </div>
                 </div> <!--form-horizontal-->
@@ -110,3 +111,20 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
+
+<script type="text/javascript">
+    var clicks = 0;
+
+    $('#addPaso').click(function(event) {
+        event.preventDefault();
+
+        var html = "<h2>Paso " + (clicks + 1) + "</h2><input type='text' name='Paso[" + clicks + "].Titulo'/><input type='text' name='Paso[" + clicks + "].Descripcion'/>";
+
+        $('#crearPasos').append(html);
+    });
+
+    function updateClickCount() {
+        document.getElementById("clickCount").innerHTML = clicks;
+    }
+</script>
+
