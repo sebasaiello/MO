@@ -34,8 +34,13 @@ namespace MO.Controllers
         }
 
         // POST: api/Tutorial
-        public void Post([FromBody]string value)
+        public void Post(Tutorial tutorial)
         {
+            if (tutorial != null)
+            {
+                db.Tutorial.Add(tutorial);
+                db.SaveChanges();
+            }
         }
 
         // PUT: api/Tutorial/5

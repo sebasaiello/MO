@@ -19,3 +19,4 @@ C:\Users\saiello\Documents\Git\Trainee\MO\MOModel\bin\Debug\EntityFramework.SqlS
 C:\Users\saiello\Documents\Git\Trainee\MO\MOModel\obj\Debug\MOModel.csproj.CoreCompileInputs.cache
 C:\Users\saiello\Documents\Git\Trainee\MO\MOModel\obj\Debug\MOModel.dll
 C:\Users\saiello\Documents\Git\Trainee\MO\MOModel\obj\Debug\MOModel.pdb
+C:\Users\saiello\Documents\Git\Trainee\MO\MOModel\obj\Debug\MOModel.csprojResolveAssemblyReference.cache

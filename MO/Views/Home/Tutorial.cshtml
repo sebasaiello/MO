@@ -9,8 +9,39 @@
 @Scripts.Render("~/bundles/bootstrap")
 
 <body>
-    <div>
-        @Model.Titulo
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2>@Model.Titulo</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <p>@Model.Descripcion</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p>Dificultad: @Model.Dificultad</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <p>Tiempo: @Model.Tiempo</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <p>@if (Model.Paso != null)
+                {
+                    @Model.Paso
+                }</p>
+            </div>
+        </div>
     </div>
 </body>
 
