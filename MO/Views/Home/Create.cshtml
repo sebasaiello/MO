@@ -3,16 +3,12 @@
 @{
     ViewBag.Title = "Create";
 }
+
+<h2>Crear nuevo Tutorial</h2>
 <div class="row">
     <div class="col-md-6">
-        <h2>Crear nuevo Tutorial</h2>
-    </div>
-</div>
-
-@using (Html.BeginForm())
-{
-    <div class="row">
-        <div class="col-md-6">
+        @using (Html.BeginForm())
+        {
             <div class="form-horizontal">
                 <hr />
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -87,47 +83,30 @@
                         @Html.ValidationMessageFor(model => model.SeccionId, "", new { @class = "text-danger" })
                     </div>
                 </div>
-                ID's Secciones:
-                Motor = 6
-                Suspension = 7
-                Frenos = 8
-                Electricidad = 9
-                Carroceria = 10
             </div>
+
+            <div class="col-md-6">
+                <h2>Agregar Pasos</h2>
+                <button type="button" class="btn btn-default" id="addPaso" onclick="clicks++;updateClickCount();">+</button>
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        <div class="col-md-10" id="crearPasos">
+                            <h2>Paso 1</h2>
+                            <input type='text' name='Paso[0].Titulo'/>
+                            <input type='text' name='Paso[0].Descripcion'/>
+                        </div>
+                    </div>
+                </div> <!--form-horizontal-->
+            </div>
+
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
                     <input type="submit" value="Create" class="btn btn-default" />
                 </div>
             </div>
-        </div>
-        <div class="col-md-6">
-            <form>
-                <div class="form-horizontal">
-                    <div class="form-group">
-                        <div class="col-md-12" id="crearPasos">
-                            <div class="pasoInput">
-                                <h3>Paso 1</h3>
-                                <label for="Paso[0].Titulo">Titulo</label>
-                                <div class="form-group">
-                                    <input class="form-control text-box single-line" type="text" name="Paso[0].Titulo" />
-                                </div>
-                                <label for="Paso[0].Descripcion">Descrpicion</label>
-                                <div class="form-group">
-                                    <textarea class="form-control text-box" rows="5" cols="50" type="text" name="Paso[0].Descripcion"></textarea>
-                                </div>
-                                <label for="Paso[0].Imagen">Imagen</label>
-                                <div class="form-group">
-                                    <input class="form-control text-box single-line" type="text" name="Paso[0].Imagen" />
-                                </div>
-                            </div>
-                        </div>
-                        <button type="button" class="btn btn-primary float-right" id="addPaso" onclick="clicks++;updateClickCount();">Agregar Paso</button>
-                    </div>
-                </div>
-            </form><!--form-horizontal-->
-        </div>
+        }
     </div>
-}
+</div>
 
 <div>
     @Html.ActionLink("Back to List", "Index")
@@ -136,10 +115,10 @@
 <script type="text/javascript">
     var clicks = 0;
 
-    $('#addPaso').click(function (event) {
+    $('#addPaso').click(function(event) {
         event.preventDefault();
 
-        var html = '<div class="pasoInput"><h3>Paso ' + (clicks + 1) + '</h3><label for="Paso[' + clicks + '].Titulo">Titulo</label><div class="form-group"><input class="form-control text-box single-line" type="text" name="Paso[' + clicks + '].Titulo" /></div><label for="Paso[' + clicks + '].Descripcion">Descrpicion</label><div class="form-group"><textarea class="form-control text-box" rows="5" cols="50" type="text" name="Paso[' + clicks + '].Descripcion"></textarea></div><label for="Paso[' + clicks + '].Imagen">Imagen</label><div class="form-group"><input class="form-control text-box single-line" type="text" name="Paso[' + clicks + '].Imagen" /></div></div>';
+        var html = "<h2>Paso " + (clicks + 1) + "</h2><input type='text' name='Paso[" + clicks + "].Titulo'/><input type='text' name='Paso[" + clicks + "].Descripcion'/>";
 
         $('#crearPasos').append(html);
     });
@@ -148,3 +127,4 @@
         document.getElementById("clickCount").innerHTML = clicks;
     }
 </script>
+
