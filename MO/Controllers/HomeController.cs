@@ -55,7 +55,7 @@ namespace MO.Controllers
                 {
                     string result = await r.Content.ReadAsStringAsync();
 
-                    return RedirectToAction("Tutorial", JsonConvert.DeserializeObject<Tutorial>(result));
+                    return View("Tutorial", JsonConvert.DeserializeObject<Tutorial>(result));
                 }
             }
 
@@ -68,7 +68,7 @@ namespace MO.Controllers
         [HttpPost]
         public async Task<ActionResult> Create(Tutorial newTutorial)
         {
-            if (newTutorial != null)
+                if (newTutorial != null)
             {
                 using (var client = new HttpClient())
                 {
