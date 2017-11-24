@@ -1,0 +1,20 @@
+﻿@model  MOModel.Seccion
+@{
+    ViewBag.Title = "Seccion";
+}
+@Styles.Render("~/Content/css")
+@Scripts.Render("~/bundles/site")
+@Scripts.Render("~/bundles/modernizr")
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+
+<body>
+    <div>
+        <ul>
+            @foreach (var tutorial in Model.Tutorial)
+            {
+                <li><a href="@Url.Action("GetTutorialById", "Home", new { id = tutorial.Id })">@Html.DisplayFor(modelItem => tutorial.Titulo)</a></li>
+            }
+        </ul>
+    </div>
+</body>

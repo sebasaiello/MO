@@ -55,10 +55,23 @@ namespace MO.Controllers
                 {
                     string result = await r.Content.ReadAsStringAsync();
 
-                    return RedirectToAction("Tutorial", JsonConvert.DeserializeObject<Tutorial>(result));
+                    return View("Tutorial", JsonConvert.DeserializeObject<Tutorial>(result));
                 }
             }
 
+        }
+
+        public async Task<ActionResult> GetSeccionById(int id)
+        {
+            using (var client = new HttpClient())
+            {
+                using (var p = await client.GetAsync(new Uri("http://localhost:51182/api/Seccion/" + id)))
+                {
+                    string result = await p.Content.ReadAsStringAsync();
+
+                    return View("Secciones", JsonConvert.DeserializeObject<Seccion>(result));
+                }
+            }
         }
         public ActionResult Create()
         {

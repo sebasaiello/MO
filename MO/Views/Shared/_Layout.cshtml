@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -27,11 +28,11 @@
                         Secciones
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="Secciones.html">Motor</a>
-                        <a class="dropdown-item" href="Secciones.html">Suspension</a>
-                        <a class="dropdown-item" href="Secciones.html">Frenos</a>
-                        <a class="dropdown-item" href="Secciones.html">Electricidad</a>
-                        <a class="dropdown-item" href="Secciones.html">Carroceria</a>
+                        <a class="dropdown-item" href="@Url.Action("GetSeccionById", "Home", new { id = 6 })">Motor</a>
+                        <a class="dropdown-item" href="@Url.Action("GetSeccionById", "Home", new { id = 7 })">Suspension</a>
+                        <a class="dropdown-item" href="@Url.Action("GetSeccionById", "Home", new { id = 8 })">Frenos</a>
+                        <a class="dropdown-item" href="@Url.Action("GetSeccionById", "Home", new { id = 9 })">Electricidad</a>
+                        <a class="dropdown-item" href="@Url.Action("GetSeccionById", "Home", new { id = 10 })">Carroceria</a>
                     </div>
                 </li>
                 <li class="nav-item">
