@@ -10,6 +10,13 @@
         <EntityTypeShape EntityType="MOModel.Tutorial" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
         <AssociationConnector Association="MOModel.FK_TutorialSeccion" ManuallyRouted="false" />
         <AssociationConnector Association="MOModel.TutorialPaso" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="MOModel.AspNetRoles" Width="1.5" PointX="5.375" PointY="2.5" />
+        <EntityTypeShape EntityType="MOModel.AspNetUserClaims" Width="1.5" PointX="9.875" PointY="1" />
+        <EntityTypeShape EntityType="MOModel.AspNetUserLogins" Width="1.5" PointX="9.875" PointY="3.75" />
+        <EntityTypeShape EntityType="MOModel.AspNetUsers" Width="1.5" PointX="7.625" PointY="1.375" />
+        <AssociationConnector Association="MOModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="MOModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="MOModel.AspNetUserRoles" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -9,6 +9,13 @@
 @Scripts.Render("~/bundles/bootstrap")
 
 <body>
+    @if (User.Identity.IsAuthenticated)
+    {
+        if (User.IsInRole("Admin"))
+        {
+            @*@Html.ActionLink("Editar Tutorial", "Tutorial", "Edit")*@
+            <p>Admin test</p>
+        }
     <div class="container">
         <div class="row">
             <div class="col-md-8">
@@ -105,6 +112,11 @@
             </div>
         </div>
     </div>
+    }
+    else
+    {
+        <h3>Por favor, <a href="~/Account/Login">Inicia Sesion</a> o <a href="~/Account/Register">Registrate</a> para ver este tutorial.</h3>
+    }
 </body>
 
 <style>

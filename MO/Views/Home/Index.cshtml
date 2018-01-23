@@ -99,10 +99,13 @@
                 }
             </ul>
         </div>
-        <div class="col-6 login">
+@if (User.Identity.IsAuthenticated)
+{
+        
+} else { <div class="col-6 login">
             <form>
                 <div class="form-group">
-                    <input type="email" class="form-control" id="emailInput" placeholder="Ingresa tu E-Mail" />
+                    <input class="form-control" id="emailInput" placeholder="Ingresa tu E-Mail" />
                 </div>
                 <div class="form-group">
                     <input type="password" class="form-control" id="passInput" placeholder="Ingresa tu contraseña" />
@@ -117,13 +120,13 @@
                     </label>
                 </div>
                 <div class="col-12">
-                    <button type="submit" class="btn btn-primary justify-content-end ingresar">Ingresar</button>
-                    <button type="submit" class="btn btn-primary justify-content-end registrarme d-none">Registrarme</button>
+                    <button type="button" href="~/Account/Login" class="btn btn-primary justify-content-end ingresar">Ingresar</button>
+                    <button type="button" href="~/Account/Register" class="btn btn-primary justify-content-end registrarme d-none">Registrarme</button>
                 </div>
                 <a class="register" href="#">No tenes usuario? Registrate!</a>
                 <a class="signIn d-none" href="#">Ya tengo usuario, quiero iniciar sesion.</a>
             </form>
-        </div>
+        </div> }
     </div>
 </section>
     </div>

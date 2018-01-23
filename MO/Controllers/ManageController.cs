@@ -332,8 +332,23 @@ namespace MO.Controllers
 
             base.Dispose(disposing);
         }
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<ActionResult> UpdateUser(ProfileViewModel model)
+        //{
+        //    //get current user and update
+        //    var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+        //    user.FirstName = model.FirstName;
+        //    user.LastName = model.LastName;
 
-#region Helpers
+        //    var updateResult = await UserManager.UpdateAsync(user);
+        //    if (updateResult.Succeeded)
+        //    {
+        //        return RedirectToAction("Index", new { Message = ManageMessageId.UpdateUserSuccess });
+        //    }
+        //    //failed - do something else and return
+        //}
+        #region Helpers
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";
 

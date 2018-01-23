@@ -78,6 +78,7 @@ namespace MO.Controllers
             return View();
         }
 
+        [Authorize]
         [HttpPost]
         public async Task<ActionResult> Create(Tutorial newTutorial)
         {

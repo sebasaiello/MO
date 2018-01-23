@@ -28,5 +28,9 @@ namespace MOModel
         public virtual DbSet<Paso> Paso { get; set; }
         public virtual DbSet<Seccion> Seccion { get; set; }
         public virtual DbSet<Tutorial> Tutorial { get; set; }
+        public virtual DbSet<AspNetRoles> AspNetRoles { get; set; }
+        public virtual DbSet<AspNetUserClaims> AspNetUserClaims { get; set; }
+        public virtual DbSet<AspNetUserLogins> AspNetUserLogins { get; set; }
+        public virtual DbSet<AspNetUsers> AspNetUsers { get; set; }
     }
 }
